@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>06_模板解析_一般指令</title>
+  <script src="./js/mvvm.js"></script>
+  <script src="./js/compile.js"></script>
+  <script src="./js/observer.js"></script>
+  <script src="./js/watcher.js"></script>
+  <style type="text/css">
+    .cls {
+      color: red;
+    }
+
+    .cls2 {
+      font-size: 50px;
+    }
+
+    .cls3 {
+      background-color: blue;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    <!-- <p v-text="msg"></p>  -->
+    <!-- <p v-html="msg2"></p> -->
+    <p v-class="clsA">小甜甜</p>
+  </div>
+  <script type="text/javascript">
+    const vm = new MVVM({
+      el: '#app',
+      data: {
+        msg: '小甜甜', // 属性
+        msg2:'<a href="http://www.baidu.com">百度</a>',
+        clsA:'cls'
+      }
+    })
+
+
+   
+  </script>
+</body>
+
+</html>

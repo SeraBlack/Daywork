@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>07_数据劫持-数据绑定</title>
+  <!--
+    1. 数据绑定
+      * 初始化显示: 页面(表达式/指令)能从data读取数据显示 (编译/解析)
+      * 更新显示: 更新data中的属性数据==>页面更新
+  -->
+  <script src="./js/mvvm.js"></script>
+  <script src="./js/compile.js"></script>
+  <script src="./js/observer.js"></script>
+  <script src="./js/watcher.js"></script>
+</head>
+
+<body>
+  <!--模版中的msg叫表达式,data中的msg叫属性-->
+  <div id="app">
+    <p>{{msg}}</p>
+  </div>
+  <script type="text/javascript">
+    const vm = new MVVM({
+      el: '#app',
+      data: {
+        msg:'小甜甜'
+      }
+    })
+
+
+    // 响应式数据:在vue中数据变化了,页面也会随之变化,那么此时的这个数据可以看成是响应式的数据
+    // 响应式数据实现的原理中包含了数据劫持和模版解析
+    // 谈谈你对数据劫持的看法或者理解
+    /*
+      首先,MVVM或者Vue中是有数据劫持的,在数据代理之后,模版解析之前,开始进行数据劫持,内部首先把实例化vm的时候,内部的data及vm传入到observe函数中,判断其传入的数据是不是对象,如果是对象才开始进行数据劫持,创建劫持的实例对象Observer实例对象
+      先存储传入进来的data到劫持对象的data属性,然后开始劫持,内部首先通过object.keys方法把vm中的data变量中所有的属性进行遍历,调用convert方法,进行响应式数据的定义,使用的是defineReactive方法，传入劫持对象的data属性和属性名及属性值
+      内部先创建dep对象(id/subs数组),然后再次对传入进来的属性值进行数据劫持--深度递归数据劫持操作,最后使用Object.defineProperty方法为劫持对象的data属性对象添加属性,并且重写get和get方法
+      数据劫持之后,劫持对象的data和vm中的data变量和vm._data和vm.$options.data指向相同,同时劫持对象中data属性里面也有vm中的data变量和vm._data和vm.$options.data中的属性
+      数据劫持之后,data中有多少个属性,就有多少个dep对象
+      // 数据劫持做了什么,1)定义响应式的数据,2)产生对应个数的dep对象,3)深度递归数据劫持
+    
+    
+    */
+  
+  </script>
+</body>
+
+</html>

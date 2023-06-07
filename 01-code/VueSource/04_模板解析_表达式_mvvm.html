@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>04_模板解析_表达式_vue</title>
+  <script src="./js/mvvm.js"></script>
+  <script src="./js/compile.js"></script>
+  <script src="./js/observer.js"></script>
+  <script src="./js/watcher.js"></script>
+  <style>
+    .cls1 {
+      font-size: 50px;
+      color: green;
+    }
+
+    .cls2 {
+      background-color: orange;
+    }
+  </style>
+</head>
+
+<body>
+  <!--div是模版容器,里面的是模版内容,模版中的msg我们暂且称为:表达式-->
+  <div id="app">
+    <p>{{ msg }}</p>
+  </div>
+  <script type="text/javascript">
+    const vm = new MVVM({
+      el: '#app',
+      data: {
+        msg: '真香' // data中的msg我们叫属性
+      }
+    })
+
+
+
+  </script>
+</body>
+
+</html>

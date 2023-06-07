@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>02_数据代理</title>
+  <script src="./js/vue.js"></script>
+</head>
+
+<body>
+  <div id="app">
+    <h2>{{msg}}</h2>
+  </div>
+
+  <script type="text/javascript">
+  // 实例化vm对象,创建vm对象,通过Vue构造函数的方式
+  // 实例化的时候传入了一个配置对象
+    var vm = new Vue({
+      el:'#app', // 选择器
+      data:{ // 数据---状态数据---响应式数据
+        msg:'小甜甜'
+      }
+    })
+    // console.log(vm.data.msg)
+    // console.log(vm.data)
+    console.dir(vm)
+    console.log(vm.$data.msg)
+    console.log(vm._data.msg)
+    console.log(vm.msg)
+    // vm 代替了data访问了msg属性
+    // vm代理了data访问了msg属性
+    // vm代理了data
+    // 所以,vue中有数据代理,代理者是vm,被代理者是data
+    
+
+
+   
+
+  </script>
+
+</body>
+
+</html>
