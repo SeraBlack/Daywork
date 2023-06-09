@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>玉树临风美少年，揽镜自顾夜不眠 </title>
+</head>
+
+<body>
+  <div id="demo">
+    <p>强哥喜欢渊哥</p>
+    <p>渊哥喜欢豪哥</p>
+    <p>豪哥喜欢峰哥</p>
+  </div>
+  <script>
+     // 6. 文档碎片对象模型----DoucmentFragment---(高效的批量处理多个节点)
+    // 需求:把所有的p标签中的内容都改成相同的文字,进行展示
+    // 创建文档碎片对象
+    var fragment = document.createDocumentFragment()
+    // 获取div节点对象
+    var divNode = document.getElementById('demo')
+    var child
+    // 循环遍历div中每个直接子节点
+    while (child=divNode.firstChild) {
+      // 把每个子节点放进文档碎片对象中
+      fragment.appendChild(child)
+    }
+    // 操作节点中的内容
+    fragment.childNodes.forEach(item=>{
+      item.innerText='哈哈,我又变帅了'
+    })
+    // 把操作后的文档碎片对象重新的放进div容器中
+    divNode.appendChild(fragment)
+
+
+  </script>
+
+
+  <script>
+    // 1.伪数组如何转成 真数组
+    // var pNodes = document.getElementsByTagName('p')
+    // console.log(Array.isArray(pNodes))
+    // // 方式1
+    // var list1 = [...pNodes]
+    // console.log(Array.isArray(list1))
+    // // 方式2
+    // var list2 = Array.from(pNodes)
+    // console.log(Array.isArray(list2))
+    // // 方式3
+    // var list3 = Array.prototype.slice.call(pNodes)
+    // console.log(Array.isArray(list3))
+    // // 方式4
+    // var list4 = [].slice.call(pNodes)
+    // console.log(Array.isArray(list4))
+
+    // 2.nodeType节点:页面中所有的东西都可以叫节点, 节点,元素,标签
+    // var divNode = document.getElementById('demo')
+    // var attrNode = divNode.getAttributeNode('id')
+    // var txtNode = divNode.firstChild
+    // console.log(divNode.nodeType) // 1
+    // console.log(attrNode.nodeType) // 2
+    // console.log(txtNode.nodeType)  // 3
+
+
+
+    // 3.Object.defineProperty()方法-- - 为对象添加属性------- 就是vue中计算属性的原理
+
+    // var person = {
+    //   firstName: '东方', // 姓氏
+    //   lastName: '不败' // 名字
+    // }
+    // Object.defineProperty(person, 'fullName', {
+    //   configurable: false,// 表示该属性是否可以被删除
+    //   enumerable: true, // 表示该属性是否可以被枚举遍历
+    //   // value:'哈_哈', // 默认值
+    //   // writable:false , // 表示该属性值是否可以被修改
+    //   get() {
+    //     return this.firstName + '_' + this.lastName
+    //   },
+    //   set(val) {
+    //     var names = val.split('_')
+    //     this.firstName = names[0]
+    //     this.lastName = names[1]
+    //   }
+    // })
+    // person.fullName = person.firstName + '_' + person.lastName
+    // console.log(person.fullName)
+    // person.fullName = '诸葛_孔明'
+    // console.log(person.firstName, person.lastName)
+    // person.firstName = '西门'
+    // person.lastName = '明哥'
+    // console.log(person.fullName)
+
+    // // 4.Object.keys(),可遍历的属性所组成的数组
+    // console.log(Object.keys(person))
+    // // 5.对象.hasOwnProperty()方法,判断当前对象中是否包含这个属性
+    // console.log(person.hasOwnProperty('firstName'))
+    // console.log(person.toString())
+    // console.dir(person)
+    // console.log(person.hasOwnProperty('toString'))
+    // 6. 文档碎片对象模型----DoucmentFragment---(高效的批量处理多个节点)
+    // 需求:把所有的p标签中的内容都改成相同的文字,进行展示
+
+
+
+    // var obj = {
+    //   name: '小甜甜',
+    //   sayHi: function () { }
+    // }
+
+  </script>
+
+
+</body>
+
+</html>
