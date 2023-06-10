@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>http</title>
+  </head>
+  <body>
+    <button class="get-btn">获取users</button>
+    <button class="add-btn">添加user</button>
+    <script>
+      // 封装ajax
+      function request(url, data = null, method = "GET") {
+        return new Promise((resolve, reject) => {
+          const xhr = new XMLHttpRequest();
+          // 设置请求方法和请求地址
+          xhr.open(method, url);
+          xhr.onload = () => {
+            if (xhr.status >= 200 && xhr.status < 300) {
+              resolve(JSON.parse(xhr.response));
+            } else {
+              reject();
+            }
+          };
+          if (method === "POST") {
+            xhr.setRequestHeader(
+              "Content-Type",
+              "application/json; charset=utf-8"
+            );
+          }
+          xhr.send(data && JSON.stringify(data));
+        });
+      }
+      // get请求
+      document.querySelector(".get-btn").onclick = async function () {
+        const res = await request("/users?page=1&limit=10");
+        console.log(res);
+      };
+      // post请求
+      document.querySelector(".add-btn").onclick = async function () {
+        const res = await request("/user", { name: "tom" }, "POST");
+        console.log(res);
+      };
+    </script>
+  </body>
+</html>
